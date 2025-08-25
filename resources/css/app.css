@@ -1,0 +1,102 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --color-tv-violet: #563B82;
+    --color-tv-pink:   #FF428A;
+    --color-tv-bg:     #EDE7F9;       /* helles, leicht violettes BG */
+    --color-tv-border: #e7dbff;       /* zarte Kontur */
+}
+
+@layer base {
+    :root { color-scheme: light; }   /* wichtig gegen Auto-Dark */
+
+    html, body { height: 100%; }
+
+    html { background-color: var(--color-tv-bg) !important; }
+    body { background-color: var(--color-tv-bg) !important; color: rgb(15 23 42); } /* text-slate-900 */
+
+    html, body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+}
+
+/* Reusable UI-Bausteine */
+@layer components {
+    .tc-container      { @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8; }
+    .tc-hero           { @apply flex flex-col items-center gap-2 py-10 text-center; }
+    .tc-hero h1        { @apply text-3xl font-bold text-tv-violet; }
+    .tc-hero a         { @apply text-tv-pink underline hover:no-underline; }
+
+    .tc-card           { @apply rounded-2xl bg-white shadow-sm ring-1 ring-tv-border; }
+    .tc-card-pad       { @apply p-5 md:p-6; }
+
+    .tc-sidebar-card   { @apply rounded-2xl bg-white shadow-sm ring-1 ring-tv-border p-5 md:p-6; }
+    .tc-note           { @apply text-sm text-slate-500; }
+
+    .tc-btn            { @apply inline-flex items-center rounded-xl px-4 py-2 font-medium ring-1 ring-tv-violet text-tv-violet hover:bg-tv-violet/10 transition; }
+    .tc-link           { @apply text-tv-pink underline decoration-from-font hover:no-underline; }
+
+    .tc-tabbar         { @apply flex gap-2 rounded-2xl bg-white p-1 ring-1 ring-tv-border; }
+    .tc-tab            { @apply flex-1 rounded-xl px-4 py-2 text-center font-medium transition; }
+    .tc-tab--active    { @apply bg-tv-violet text-white shadow; }
+    .tc-tab--idle      { @apply text-slate-700 hover:bg-slate-50; }
+
+    .tc-field          { @apply w-full rounded-xl bg-white px-3 py-2 ring-1 ring-tv-border placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-tv-violet; }
+    .tc-select-list    { @apply mt-2 overflow-hidden rounded-xl ring-1 ring-tv-border bg-white; }
+    .tc-list-item      { @apply w-full px-3 py-2 text-left hover:bg-tv-violet/10; }
+
+    .tc-list           { @apply grid gap-3 sm:grid-cols-2 lg:grid-cols-3; }
+    .tc-show-item      { @apply rounded-2xl bg-white shadow-sm ring-1 ring-tv-border p-4; }
+    .tc-show-link      { @apply font-medium text-tv-pink hover:opacity-90; }
+
+    .tc-badge { @apply inline-flex items-center rounded-full bg-white text-slate-700 ring-1 ring-tv-border px-2 py-0.5 text-xs; }
+    .tc-show-link { @apply underline decoration-tv-violet/30 hover:decoration-tv-violet; }
+    .tc-btn { @apply inline-flex items-center rounded-lg bg-tv-violet px-3 py-1.5 text-white; }}
+
+@layer components {
+    .tc-rte { @apply text-slate-600; }
+
+    /* Spacing-Reset am Block-Anfang/Ende */
+    .tc-rte > *:first-child { @apply mt-0; }
+    .tc-rte > *:last-child  { @apply mb-0; }
+
+    /* Absätze */
+    .tc-rte p { @apply mb-2 leading-relaxed; }
+
+    /* Überschriften */
+    .tc-rte h1 { @apply text-3xl font-bold mt-8 mb-4 text-slate-600; }
+    .tc-rte h2 { @apply text-2xl font-bold mt-6 mb-3 text-slate-600; }
+    .tc-rte h3 { @apply text-xl  font-semibold mt-5 mb-2 text-slate-600; }
+    .tc-rte h4 { @apply text-lg  font-semibold mt-4 mb-2 text-slate-600; }
+
+    /* Links */
+    .tc-rte a { @apply underline text-tv-pink hover:no-underline; }
+
+    /* Listen */
+    .tc-rte ul { @apply list-disc pl-6 mb-4; }
+    .tc-rte ol { @apply list-decimal pl-6 mb-4; }
+    .tc-rte li { @apply mb-1; }
+
+    /* Zitate */
+    .tc-rte blockquote { @apply border-l-4 border-tv-border pl-4 italic text-slate-700 my-4; }
+
+    /* Bilder / Figure */
+    .tc-rte img        { @apply my-4 rounded-xl; }
+    .tc-rte figure     { @apply my-4; }
+    .tc-rte figcaption { @apply mt-2 text-sm text-slate-600; }
+
+    /* Trennlinie */
+    .tc-rte hr { @apply my-8 border-tv-border; }
+
+    /* Tabellen */
+    .tc-rte table      { @apply w-full border-collapse text-sm my-4; }
+    .tc-rte thead th   { @apply border border-tv-border bg-slate-50 px-3 py-2 text-left font-semibold; }
+    .tc-rte tbody td   { @apply border border-tv-border px-3 py-2 align-top; }
+
+    /* Code */
+    .tc-rte pre  { @apply my-4 overflow-x-auto rounded-lg bg-slate-900 p-4 text-white; }
+    .tc-rte code { @apply rounded bg-slate-100 px-1 py-0.5; }
+}

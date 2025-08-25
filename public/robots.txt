@@ -1,0 +1,14 @@
+# Cookiebot-Crawler auf tiefe Inhalte beschränken
+User-agent: Cookiebot
+Disallow: /shows/
+Disallow: /show/
+Disallow: /seasons/
+Disallow: /season/
+Disallow: /candidates/
+Disallow: /candidate/
+
+# Alle anderen Crawler dürfen normal crawlen
+User-agent: *
+Allow: /
+
+Sitemap: https://trash.test/sitemap.xml

@@ -25,7 +25,7 @@ class TabsNavigation extends Component
             [
                 'seo' => [
                     'title'       => 'TrashConnect - Deine Reality-TV-Suchmaschine',
-                    'description' => 'Alle Reality-TV-Shows im Überblick – filterbar und durchsuchbar.',
+                    'description' => 'Alle Reality-Shows im Überblick: Verbindungen zwischen Stars finden, Staffeln mit kompletter Besetzung ansehen und Verbindungsseiten teilen.',
                     'canonical'   => url()->current(),
                     'ogTitle'     => 'Shows',
                     'ogDescription'=> 'Alle Reality-TV-Shows im Überblick – filterbar und durchsuchbar.',

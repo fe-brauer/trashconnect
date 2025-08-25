@@ -94,7 +94,7 @@ class ConnectionPage extends Component
     {
         $title = "Gemeinsame Auftritte von {$this->a->name} und {$this->b->name} - Trashconnect";
 
-        $descJoint   = "Alle gemeinsamen Auftritte von {$this->a->name} und {$this->b->name}: Shows, Staffeln, komplette Teilnehmerlisten und Streaminglinks – kompakt auf Trashconnect.";
+        $descJoint   = "Alle gemeinsamen Auftritte von {$this->a->name} und {$this->b->name}: Shows, Staffeln, komplette Teilnehmerlisten und Streaminglinks.";
         $descNoJoint = "Keine gemeinsame Staffel, aber gleiche Formate: Übersicht der Shows von {$this->a->name} und {$this->b->name} mit Staffeln, Besetzungen und Streaminglinks.";
         $description = \Illuminate\Support\Str::limit($this->hasJoint ? $descJoint : $descNoJoint, 160, '');
 

@@ -7,7 +7,6 @@
     :ogType="$seo['ogType']"
 />
 <div>
-    <h1 class="mb-4 text-3xl font-bold">Alle Shows</h1>
     <section class="tc-card tc-card-pad space-y-6">
 
     <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

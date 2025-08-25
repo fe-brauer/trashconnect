@@ -21,11 +21,11 @@ class CandidateProfile extends Component
 
     public function render()
     {
-        $title = $this->candidate->name.' – TrashConnect';
+        $title = $this->candidate->name.' – Kandidat:innenprofil - TrashConnect';
         $desc  = Str::limit(strip_tags($this->candidate->bio ?? ''), 160, '…');
 
-        return view('livewire.candidate-profile')
-            ->layout('components.layouts.app', [
+        return view('livewire.candidate-profile', [
+            'seo' => [
                 'title'       => $title,
                 'description' => $desc,
                 'canonical'   => url()->current(),
@@ -33,6 +33,7 @@ class CandidateProfile extends Component
                 'ogDescription'=> $desc,
                 'ogType'      => 'profile',
                 'ogImage'     => $this->candidate->photo_url ?? asset('images/og-default.jpg'),
-            ]);
+            ]
+        ]);
     }
 }

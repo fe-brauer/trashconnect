@@ -48,6 +48,14 @@
     </script>
 @endpush
 
+<x-seo
+    :title="$seo['title']"
+    :description="$seo['description']"
+    :canonical="$seo['canonical']"
+    :ogTitle="$seo['ogTitle']"
+    :ogDescription="$seo['ogDescription']"
+    :ogType="$seo['ogType']"
+/>
 
 <div>
     <h1 class="text-3xl font-bold">{{ $candidate->name }}</h1>

@@ -37,11 +37,11 @@ class ShowDetails extends Component
 
     public function render()
     {
-        $title = $this->show->name.' – TrashConnect';
-        $desc  = Str::limit(strip_tags($this->show->description ?? ''), 160, '…');
+        $title = $this->show->name.' – Showdetails - TrashConnect';
+        $desc  = Str::limit(strip_tags($this->show->description ?? ''), 150, '…');
 
-        return view('livewire.show-details')
-            ->layout('components.layouts.app', [
+        return view('livewire.show-details', [
+            'seo' => [
                 'title'       => $title,
                 'description' => $desc,
                 'canonical'   => url()->current(),
@@ -49,6 +49,7 @@ class ShowDetails extends Component
                 'ogDescription'=> $desc,
                 'ogType'      => 'video.tv_show',
                 'ogImage'     => $this->show->cover_url ?? asset('images/og-default.jpg'),
-            ]);
+            ]
+        ]);
     }
 }

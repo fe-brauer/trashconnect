@@ -10,5 +10,6 @@ Disallow: /candidate/
 # Alle anderen Crawler dürfen normal crawlen
 User-agent: *
 Allow: /
+Disallow: /admin/
 
 Sitemap: https://trash.test/sitemap.xml

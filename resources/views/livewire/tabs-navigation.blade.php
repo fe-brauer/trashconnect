@@ -39,9 +39,9 @@
         </div>
 
         <aside class="tc-sidebar-card">
-
-            <p class="mt-4 text-sm text-slate-600">
-                Folge auf <a href="https://instagram.com" class="tc-link">Instagram</a> für mehr Updates!
+            <h2 class="text-xl font-semibold ">Social Media</h2>
+            <p class="mt-4 text-base text-slate-600">
+                Folge auf <a href="https://www.instagram.com/trashconnect.de/" class="tc-link">Instagram</a> für mehr Updates!
             </p>
         </aside>
     </section>

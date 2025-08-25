@@ -40,7 +40,7 @@ class SeasonResource extends Resource
             Forms\Components\TextInput::make('name')->label('Name')->required()->live(onBlur: true)
                 ->afterStateUpdated(fn($state, callable $set) => $set('slug', Str::slug($state))),
 
-            Forms\Components\TextInput::make('slug')->label('Slug')->required()->unique(ignoreRecord: true, table: 'seasons'),
+            Forms\Components\TextInput::make('slug')->label('Slug')->required(),
 
             Forms\Components\TextInput::make('year')->label('Jahr')->numeric()->minValue(1900)->maxValue(2100),
             Forms\Components\TextInput::make('episode_count')->label('Folgen')->numeric()->minValue(0),

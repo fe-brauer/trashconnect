@@ -36,7 +36,7 @@ class ShowResource extends Resource
             Section::make('Show')->schema([
                 Forms\Components\TextInput::make('name')->label('Name')->required()->live(onBlur: true)
                     ->afterStateUpdated(fn($state, callable $set) => $set('slug', Str::slug($state))),
-                Forms\Components\TextInput::make('slug')->label('Slug')->required()->unique(ignoreRecord: true),
+                Forms\Components\TextInput::make('slug')->label('Slug')->required(),
                 Forms\Components\TextInput::make('genre')->label('Genre'),
                 Forms\Components\Select::make('network_id')
                     ->label('Sender/Plattform')

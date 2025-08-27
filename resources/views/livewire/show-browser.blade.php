@@ -1,3 +1,6 @@
+@php($isHome = request()->routeIs('home'))
+
+@if (! $isHome)
 <x-seo
     :title="$seo['title']"
     :description="$seo['description']"
@@ -6,6 +9,8 @@
     :ogDescription="$seo['ogDescription']"
     :ogType="$seo['ogType']"
 />
+
+@endif
 <div>
     <section class="tc-card tc-card-pad space-y-6">
 

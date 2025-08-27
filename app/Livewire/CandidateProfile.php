@@ -21,8 +21,26 @@ class CandidateProfile extends Component
 
     public function render()
     {
+        // Shows laden (über Seasons der Teilnahmen)
+        $this->candidate->loadMissing('participants.season.show');
+
+        $shows = $this->candidate->participants
+            ->pluck('season.show.name')
+            ->filter()
+            ->unique()
+            ->sort()            // optional: stabil/ABC
+            ->values();
+
+        $showList = $shows->join(', ');
+
+        // Beschreibung im gewünschten Format + auf ~160 Zeichen begrenzen
+        $desc = Str::limit(
+            "{$this->candidate->name} - Teilgenommen bei: {$showList}",
+            160,
+            '…'
+        );
+
         $title = $this->candidate->name.' – Kandidat:innenprofil - TrashConnect';
-        $desc  = Str::limit(strip_tags($this->candidate->bio ?? ''), 160, '…');
 
         return view('livewire.candidate-profile', [
             'seo' => [

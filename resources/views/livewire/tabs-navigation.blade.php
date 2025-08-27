@@ -43,7 +43,8 @@
             <p class="mt-4 text-base text-slate-600">
                 TrashConnect ist privat finanziert und bleibt kostenlos.
                 Wenn dir das Projekt gefällt, kannst du mich freiwillig auf <a class="tc-link" href="https://buymeacoffee.com/trashconnect">Buy Me a Coffee</a> unterstützen. Kein Abo, keine Paywall – einfach ein Danke. ☕️💜
-
+            </p>
+            <p class="mt-4 text-base text-slate-600">
                 Folge auf <a href="https://www.instagram.com/trashconnect.de/" class="tc-link">Instagram</a> für mehr Updates!
             </p>
         </aside>

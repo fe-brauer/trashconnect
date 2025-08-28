@@ -12,6 +12,14 @@
 
 @endif
 <div>
+    <nav aria-label="Breadcrumb" class="mb-4 text-sm">
+        <ol class="flex gap-2">
+            <li><a href="{{ route('home') }}" class="underline" wire:navigate>Start</a></li>
+            <li aria-hidden="true">/</li>
+            <li aria-current="page" class="text-slate-600">Alle Shows</li>
+        </ol>
+    </nav>
+
     <section class="tc-card tc-card-pad space-y-6">
 
     <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

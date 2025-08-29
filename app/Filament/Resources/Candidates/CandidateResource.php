@@ -8,6 +8,7 @@ use App\Filament\Resources\Shared\SeoRelationManager;
 use App\Models\Candidate;
 use Filament\Forms;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -42,9 +43,29 @@ class CandidateResource extends Resource
                 Forms\Components\TextInput::make('slug')->label('Slug')->required()->unique(ignoreRecord: true),
                 Forms\Components\DatePicker::make('birth_date')->label('Geburtsdatum'),
                 Forms\Components\Textarea::make('bio')->label('Bio')->rows(4),
-                Forms\Components\KeyValue::make('social_media')->label('Social Links')
-                    ->keyLabel('Netzwerk')->valueLabel('URL')->reorderable(),
-            ])->columns(2),
+                // 👇 Nur noch Instagram
+                Forms\Components\TextInput::make('instagram_url')
+                    ->label('Instagram')
+                    ->placeholder('https://instagram.com/username')
+                    ->helperText('Voller Profil-Link oder @username/username einfügen.')
+                    ->rules(['nullable', 'url'])
+                    ->afterStateUpdated(function ($state, Set $set) {
+                        if (! $state) return;
+                        $s = trim($state);
+
+                        // @username / username → vollqualifizierte URL
+                        if (! str_starts_with($s, 'http')) {
+                            $username = ltrim($s, '@/');
+                            $set('instagram_url', "https://instagram.com/{$username}");
+                            return;
+                        }
+
+                        // http → https normalisieren
+                        if (str_starts_with($s, 'http://')) {
+                            $set('instagram_url', preg_replace('#^http://#i', 'https://', $s));
+                        }
+                    }),
+            ]),
 
             Section::make('SEO')->schema([
                 Forms\Components\TextInput::make('meta_title')->label('Meta Title')->maxLength(70),

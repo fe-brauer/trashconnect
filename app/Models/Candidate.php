@@ -8,12 +8,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Candidate extends Model
 {
     protected $fillable = [
-        'name','slug','bio','birth_date','social_media','meta_title','meta_description',
+        'name','slug','bio','instagram_url','birth_date','meta_title','meta_description',
     ];
 
     protected $casts = [
-        'birth_date'   => 'date',
-        'social_media' => 'array',
+        'birth_date'   => 'date'
     ];
 
     public function participants() {

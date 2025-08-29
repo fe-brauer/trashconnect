@@ -7,10 +7,8 @@
 
     // Social
     $sameAs = [];
-    if (is_array($candidate->social_media)) {
-        foreach ($candidate->social_media as $url) {
-            if (!empty($url)) $sameAs[] = $url;
-        }
+    if (!empty($candidate->instagram_url)) {
+        $sameAs[] = $candidate->instagram_url;
     }
 
     // Auftritte (Participants) sortieren
@@ -30,7 +28,6 @@
 
     // Stats
     $showsCount   = $byShow->count();
-    $seasonsCount = $parts->pluck('season_id')->unique()->count();
     $firstYear    = $parts->pluck('season.year')->filter()->min();
     $lastYear     = $parts->pluck('season.year')->filter()->max();
     $networks     = $byShow->pluck('show.network')->filter()->unique('id')->values();
@@ -128,7 +125,6 @@
                 <h2 class="mb-2 text-lg font-semibold text-tv-violet">Fakten</h2>
                 <dl class="grid grid-cols-2 gap-x-3 gap-y-1 text-sm text-slate-800">
                     <dt class="opacity-70">Shows</dt><dd>{{ $showsCount }}</dd>
-                    <dt class="opacity-70">Staffeln</dt><dd>{{ $seasonsCount }}</dd>
                     <dt class="opacity-70">Aktiv</dt><dd>
                         @if($firstYear && $lastYear) {{ $firstYear }}–{{ $lastYear }}
                         @elseif($firstYear) seit {{ $firstYear }}
@@ -153,19 +149,17 @@
                 </section>
             @endif
 
-            @if(!empty($sameAs))
-                <section>
-                    <h3 class="mb-2 text-lg font-semibold text-tv-violet">Social</h3>
-                    <div class="flex flex-wrap gap-2 text-sm">
-                        @foreach($sameAs as $link)
-                            <a href="{{ $link }}" target="_blank" rel="noopener nofollow"
-                               class="rounded-full bg-slate-100 px-3 py-1 font-medium text-tv-violet ring-1 ring-tv-border/60 hover:bg-slate-200">
-                                {{ parse_url($link, PHP_URL_HOST) ?? $link }}
-                            </a>
-                        @endforeach
-                    </div>
-                </section>
-            @endif
+                @if(!empty($candidate->instagram_url))
+                    <section>
+                        <h3 class="mb-2 text-lg font-semibold text-tv-violet">Social Media</h3>
+                        <a href="{{ $candidate->instagram_url }}" target="_blank" rel="noopener nofollow"
+                           class="text-tv-violet hover:text-tv-pink flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="fill-current h-8 w-8" aria-hidden="true">
+                                <path d="M320.3 205C256.8 204.8 205.2 256.2 205 319.7C204.8 383.2 256.2 434.8 319.7 435C383.2 435.2 434.8 383.8 435 320.3C435.2 256.8 383.8 205.2 320.3 205zM319.7 245.4C360.9 245.2 394.4 278.5 394.6 319.7C394.8 360.9 361.5 394.4 320.3 394.6C279.1 394.8 245.6 361.5 245.4 320.3C245.2 279.1 278.5 245.6 319.7 245.4zM413.1 200.3C413.1 185.5 425.1 173.5 439.9 173.5C454.7 173.5 466.7 185.5 466.7 200.3C466.7 215.1 454.7 227.1 439.9 227.1C425.1 227.1 413.1 215.1 413.1 200.3zM542.8 227.5C541.1 191.6 532.9 159.8 506.6 133.6C480.4 107.4 448.6 99.2 412.7 97.4C375.7 95.3 264.8 95.3 227.8 97.4C192 99.1 160.2 107.3 133.9 133.5C107.6 159.7 99.5 191.5 97.7 227.4C95.6 264.4 95.6 375.3 97.7 412.3C99.4 448.2 107.6 480 133.9 506.2C160.2 532.4 191.9 540.6 227.8 542.4C264.8 544.5 375.7 544.5 412.7 542.4C448.6 540.7 480.4 532.5 506.6 506.2C532.8 480 541 448.2 542.8 412.3C544.9 375.3 544.9 264.5 542.8 227.5zM495 452C487.2 471.6 472.1 486.7 452.4 494.6C422.9 506.3 352.9 503.6 320.3 503.6C287.7 503.6 217.6 506.2 188.2 494.6C168.6 486.8 153.5 471.7 145.6 452C133.9 422.5 136.6 352.5 136.6 319.9C136.6 287.3 134 217.2 145.6 187.8C153.4 168.2 168.5 153.1 188.2 145.2C217.7 133.5 287.7 136.2 320.3 136.2C352.9 136.2 423 133.6 452.4 145.2C472 153 487.1 168.1 495 187.8C506.7 217.3 504 287.3 504 319.9C504 352.5 506.7 422.6 495 452z"/>
+                            </svg>
+                        </a>
+                    </section>
+                @endif
 
             @if($topConnections->isNotEmpty())
                 <section>
@@ -174,11 +168,11 @@
                         @foreach($topConnections as $tc)
                             <li>
                                 <a href="{{ route('candidates.show', $tc->candidate->slug) }}" wire:navigate
-                                   class="underline">{{ $tc->candidate->name }}</a>
+                                   class="underline hover:text-tv-pink">{{ $tc->candidate->name }}</a>
                                 <span class="ml-1 rounded bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-700 ring-1 ring-tv-border/60">
                                     {{ $tc->count }}×
                                 </span>
-                                <a href="{{ route('connections.show', [$candidate->slug, $tc->candidate->slug]) }}" class="ml-2 text-xs underline">Verbindungen</a>
+                                <a href="{{ route('connections.show', [$candidate->slug, $tc->candidate->slug]) }}" class="hover:text-tv-pink ml-2 text-xs underline">Verbindungen</a>
                             </li>
                         @endforeach
                     </ul>

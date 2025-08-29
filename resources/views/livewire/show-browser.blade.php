@@ -1,16 +1,3 @@
-@php($isHome = request()->routeIs('home'))
-
-@if (! $isHome)
-<x-seo
-    :title="$seo['title']"
-    :description="$seo['description']"
-    :canonical="$seo['canonical']"
-    :ogTitle="$seo['ogTitle']"
-    :ogDescription="$seo['ogDescription']"
-    :ogType="$seo['ogType']"
-/>
-
-@endif
 <div>
     <nav aria-label="Breadcrumb" class="mb-4 text-sm">
         <ol class="flex gap-2">
@@ -21,7 +8,7 @@
     </nav>
 
     <section class="tc-card tc-card-pad space-y-6">
-
+    <h1 class="text-3xl font-extrabold tracking-tight text-tv-violet">Alle Shows</h1>
     <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         @forelse($shows as $show)
             <li class="bg-tv-violet rounded-xl shadow-sm ring-1 ring-tv-border  text-center p-2">

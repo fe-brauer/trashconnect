@@ -18,7 +18,7 @@ Route::get('/candidate/{slug}', \App\Livewire\CandidateProfile::class)->name('ca
 
 Route::get('/connections/{candA}/{candB}', \App\Livewire\ConnectionPage::class)->name('connections.show');
 
-Route::get('/shows', ShowBrowser::class)->name('shows.index');
+Route::view('/shows', 'pages.shows-index')->name('shows.index');
 Route::get('/show/{id}-{slug}', ShowDetails::class)->whereNumber('id')->name('show.detail');
 
 Route::get('/season/{showSlug}/{seasonSlug}', \App\Livewire\SeasonDetails::class)->name('season.show');

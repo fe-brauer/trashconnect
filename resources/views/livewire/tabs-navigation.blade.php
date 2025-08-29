@@ -25,7 +25,7 @@
             </div>
 
             <div x-show="tab==='show'" role="tabpanel">
-                @livewire('show-browser')
+                <livewire:show-browser :with-seo="false" />
             </div>
         </div>
     </section>
